@@ -1,5 +1,4 @@
 #!/usr/bin/python
-import os
 import sys
 
 charset ={'a' : ['a','A','4','@'],'b' : ['b','B'], 'c' : ['c','C'],'d' : ['d','D'], 'e' : ['e','E','3'], 'f' : ['f', 'F'], 'g' : ['g','G'], 'h': ['h','H'], 'i':['i','I','1','!'], 'j': ['j','J'], 'k': ['k','K'], 'l':['l','L', '1','!'], 'm':['m','M'], 'n':['n','N'], 'o':['o','O','0'], 'p':['p','P'], 'q':['q','Q'],'r':['r','R'], 's':['s','S','5','$'], 't': ['t','T','7'], 'u': ['u','U'], 'v':['v','V'], 'w' : ['w','W'], 'x' : ['x','X'],'y':['y','Y'], 'z': ['z','Z']}
@@ -12,7 +11,8 @@ def permutations(string):
     
     i = 1
     for c in string:
-        i *= len(charset[c])
+        if c in charset:
+            i *= len(charset[c])
     
     return i
 
@@ -26,6 +26,9 @@ def makePerm(string):
     for i in range(permutations(string)):
         passList.append("")
         for i2 in range(len(string)):
+            if string[i2] not in charset:
+                passList[i] += string[i2]
+                continue
             if i2 == 0:
                 passList[i] += charset[string[0]][i%len(charset[string[0]])]
             else:
