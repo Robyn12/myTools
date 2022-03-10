@@ -1,9 +1,9 @@
 from pwn import *
 import sys
+import os
 
-# first run this command below to get core files and move binary + exploit script to /home/robyn/gdb-workspace
-# sudo sysctl -w kernel.core_pattern=/home/robyn/gdb-workspace
-context.terminal = ['cmd.exe','/c','start','wsl.exe','--cd','/home/robyn/gdb-workspace']
+pwd = os.environ['PWD']
+context.terminal = ['cmd.exe','/c','start','wsl.exe','--cd',pwd]
 
 HOST = [HOST]
 PORT = [PORT]
